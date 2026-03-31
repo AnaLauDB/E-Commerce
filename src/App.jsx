@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { Header } from "./components/Header"
 import { Footer } from "./components/Footer"
 import { useFilters } from "./hooks/useFilters"
+import { CartItem } from "./components/Cart.jsx"
+import { CartProvider } from "./components/cart.jsx"
 
 
 function App() {
@@ -17,9 +19,12 @@ function App() {
   return (
     <>
       <h1>Shopping Cart</h1>
-      <Header />
-      <Products products={filteredProducts} />
-      <Footer />
+      <CartProvider>
+        <Header />
+        <CartItem />
+        <Products products={filteredProducts} />
+        <Footer />
+      </CartProvider>
     </>
   )
 }
