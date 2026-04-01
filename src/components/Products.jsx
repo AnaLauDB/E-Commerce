@@ -4,10 +4,10 @@ import { useCart } from '../hooks/useCart'
 
 export function Products({ products }) {
 
-    const { addToCart, removeFromCart, cart } = useCart()
+    const { addToCart, removeFromCart, cartItems } = useCart()
 
     const checkIfProductInCart = (product) => {
-        return cart.some(item => item.id === product.id)
+        return cartItems.some(item => item.id === product.id)
     }
 
     return (
@@ -26,7 +26,7 @@ export function Products({ products }) {
                                 <strong>{product.title}</strong> - ${product.price}
                             </div>
                             <div>
-                                <button nClick={() => {
+                                <button onClick={() => {
                                     isProductInCart
                                         ? removeFromCart(product)
                                         : addToCart(product)

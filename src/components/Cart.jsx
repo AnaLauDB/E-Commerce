@@ -1,9 +1,31 @@
 import { useId } from 'react'
 import './Cart.css'
 import { CartIcon, ClearCartIcon } from './Icons'
+import { useCart } from '../hooks/useCart'
+
+function CartProduct({ thumbnail, title, price, quantity, addToCart, removeFromCart }) {
+    return (
+        <li>
+            <img
+                src={thumbnail}
+                alt={title}
+            />
+            <div>
+                <strong>{title}</strong> - {price}
+            </div>
+            <footer>
+                <small>Cantidad: {quantity}</small>
+                <button onClick={removeFromCart}> - </button>
+                <button onClick={addToCart}> + </button>
+            </footer>
+        </li>
+    )
+}
+
 
 export function CartItem({ }) {
     const cartCheckboxId = useId()
+    const { cartItems, clearCart, addToCart, removeFromCart } = useCart()
 
     return (
         <>
@@ -15,21 +37,15 @@ export function CartItem({ }) {
             <aside className='cart'>
                 <h2>Carrito de compras</h2>
                 <ul>
-                    <li>
-                        <img
-                            src='https://cdn.dummyjson.com/product-images/2/thumbnail.jpg'
-                            alt='iPhone'
-                        />
-                        <div>
-                            <strong>iPhone 9</strong> - $549
-                        </div>
-                        <footer>
-                            <small>Cantidad: 1</small>
-                            <button> + </button>
-                        </footer>
-                    </li>
+                    {cartItems.map(item => (
+                        <CartProduct
+                            key={item.id}
+                            addToCart={() => addToCart(item)}
+                            removeFromCart={() => removeFromCart(item)}
+                            {...item} />
+                    ))}
                 </ul>
-                <button className='clear-cart'>
+                <button className='clear-cart' onClick={clearCart}>
                     <ClearCartIcon />
                 </button>
             </aside>

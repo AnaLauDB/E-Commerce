@@ -9,7 +9,7 @@ export function Footer() {
             <p>© 2024 E-Commerce. All rights reserved.</p>
             <p> Shopping Cart con useContext y useReducer</p>
             {
-                JSON.stringify(cartItems, null, 2)
+                // JSON.stringify(cartItems, null, 2)
             }
         </footer>
     )
