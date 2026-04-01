@@ -5,7 +5,7 @@ import { Header } from "./components/Header"
 import { Footer } from "./components/Footer"
 import { useFilters } from "./hooks/useFilters"
 import { CartItem } from "./components/Cart.jsx"
-import { CartProvider } from "./components/cart.jsx"
+import { CartProvider } from "./context/cart.jsx"
 
 
 function App() {
